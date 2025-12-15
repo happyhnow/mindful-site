@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>第 2 天｜回到身體</title>
+  <style>
+    body{
+      font-family:system-ui,-apple-system,"Noto Sans TC";
+      max-width:720px;
+      margin:40px auto;
+      padding:0 16px;
+      line-height:1.8;
+    }
+    .card{
+      border:1px solid #ddd;
+      border-radius:16px;
+      padding:18px;
+      margin:20px 0;
+    }
+    .big{
+      font-size:26px;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    button{
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid #999;
+      background:#fff;
+      cursor:pointer;
+    }
+    a{color:#3366cc;}
+  </style>
+</head>
+
+<body>
+
+<a href="index.html">← 回首頁</a>
+
+<h1>第 2 天｜回到身體，讓自己落地</h1>
+
+<div class="card">
+  <p>
+  很多時候，我們不是不放鬆，  
+  而是整個人都卡在腦袋裡。
+  </p>
+  <p>
+  今天的練習，不用想、不用分析，  
+  只要感覺身體的重量、接觸、存在。
+  </p>
+</div>
+
+<div class="card">
+  <div class="big" id="cue">準備好了就開始</div>
+  <p>吸氣時，感覺身體；吐氣時，讓重量往下沉。</p>
+  <button id="start">開始</button>
+  <button id="stop">停止</button>
+</div>
+
+<div class="card">
+  <p>
+  如果你剛剛有任何一刻  
+  感覺「人在這裡」，  
+  那就是回到身體正在發生。
+  </p>
+</div>
+
+<script>
+let t=null, secs=0;
+const cue=document.getElementById('cue');
+
+function step(){
+  secs++;
+  const c = secs % 12;
+  if(c>=1 && c<=4) cue.textContent = "吸氣… 感覺身體 " + (5-c);
+  else if(c>=5 && c<=6) cue.textContent = "停… 感覺重量 " + (7-c);
+  else cue.textContent = "吐氣… 讓身體往下沉 " + (13-c);
+  if(secs>=60){
+    stop();
+    cue.textContent="完成，謝謝你回到身體";
+  }
+}
+function start(){ stop(); secs=0; t=setInterval(step,1000); }
+function stop(){ if(t){clearInterval(t);t=null;} }
+
+document.getElementById('start').onclick=start;
+document.getElementById('stop').onclick=stop;
+</script>
+
+</body>
+</html>
