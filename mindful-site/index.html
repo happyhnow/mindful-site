@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>正念練習｜1 分鐘呼吸</title>
+  <style>
+    body{font-family:system-ui,-apple-system,"Noto Sans TC";max-width:720px;margin:40px auto;padding:0 16px;line-height:1.7}
+    .card{border:1px solid #ddd;border-radius:16px;padding:18px;margin:14px 0}
+    button{padding:10px 14px;border-radius:12px;border:1px solid #999;background:#fff;cursor:pointer}
+    .big{font-size:28px;font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>每天 3 分鐘，把心帶回來</h1>
+<p>
+這裡不是讓你變更好、變更強的地方，  
+而是一個幫你在忙亂生活中，  
+重新感覺到「我還在」的正念練習入口。
+</p>
+
+  <div class="card">
+    <div class="big" id="cue">準備好了就開始</div>
+    <p>吸氣 4 秒 → 停 2 秒 → 吐氣 6 秒</p>
+    <button id="start">開始</button>
+    <button id="stop">停止</button>
+  </div>
+
+  <div class="card">
+    <h2>今天的提醒</h2>
+    <p>分心不是失敗，是覺察正在發生。</p>
+  </div>
+
+<script>
+let t=null, secs=0;
+const cue=document.getElementById('cue');
+
+function step(){
+  secs++;
+  const c = secs % 12;
+  if(c>=1 && c<=4) cue.textContent = "吸氣… " + (5-c);
+  else if(c>=5 && c<=6) cue.textContent = "停… " + (7-c);
+  else cue.textContent = "吐氣… " + (13-c);
+  if(secs>=60){ stop(); cue.textContent="完成：謝謝你照顧自己"; }
+}
+function start(){ stop(); secs=0; t=setInterval(step,1000); }
+function stop(){ if(t){clearInterval(t);t=null;} }
+
+document.getElementById('start').onclick=start;
+document.getElementById('stop').onclick=stop;
+</script>
+
+<div class="card">
+  <h2>想更系統地練習？</h2>
+  <p>
+  我設計了一套循序漸進的正念練習，  
+  適合忙碌的大人，也適合第一次接觸正念的人。
+  </p>
+  <p>
+  👉 <a href="https://forms.gle/qgqtNL6LMGPg76hy6">點這裡留下聯絡方式</a>  
+  </p>
+</div>
+</body>
+</html>
